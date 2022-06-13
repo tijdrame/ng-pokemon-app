@@ -31,10 +31,10 @@ export class PokemonService {
   }
 
   searchPokemonList(term:String):Observable<Pokemon[]> {
+    //faire une recherche si saisie > 1
     if(term.length <= 1) {
       return of([]);
     } 
-
     return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}`).pipe(
       tap((pokemon) => this.log(pokemon)),
       catchError((error) => this.handleError(error, []))
